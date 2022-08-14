@@ -11,3 +11,67 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.popup{
+  border: 2px solid black;
+  width: fit-content;
+  margin-left: 50%;
+}
+ul{
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+.input{
+  width:400px;
+  height: 40px;
+}
+.poll {
+  width: 400px;
+  padding: 1.5rem;
+  margin: 50px;
+  font-family: sans-serif;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+
+.poll__title {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.poll__option:hover {
+  cursor: pointer;
+}
+
+.poll__option{
+  display: block;
+}
+
+.poll__option:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.poll-option-selected .poll__option-fill {
+  background: #009578;
+  width: 100%;
+  height: 10px;
+}
+
+.poll__option--selected .poll__option-info {
+  font-weight: bold;
+}
+
+.poll__option-fill {
+  width: 100%;
+  height: 10px;
+  background: #dddddd;
+}
+
+.poll__option-info {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  font-size: 0.85rem;
+}
+
