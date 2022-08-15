@@ -63,6 +63,7 @@ class First extends Component {
     }
     
     currentpoll(){
+        if(document.getElementById("newpoll").style.display == "none") document.getElementById("newpoll").style.display = "block"; 
         fetch("http://localhost:3001/")
                 .then((res) =>{
                     if(res.ok){
@@ -70,6 +71,7 @@ class First extends Component {
                     }
                 }).then((x)=>{
                     var poll = document.getElementById("newpoll")
+                    poll.className = "poll__option"
                         if (poll.childNodes.length == 0){
                             data = x[x.length-1].poll
                             console.log(data)
@@ -80,7 +82,6 @@ class First extends Component {
                             poll.append(h1)
                             for(const option of data[0][1]){ 
                                 var div1 = document.createElement("div");
-                                div1.id = "div1"
                                 div1.className= "poll__option-fill"
                                 var div2 = document.createElement("div");
                                 div2.className= "poll__option-info"
@@ -89,22 +90,28 @@ class First extends Component {
                                 span1.className = "poll__label"
                                 span2.className = "poll__percentage"
                                 span1.textContent = option.label
-                                span2.textContent = data[1] ? option.votes*100/data[1] : 0
+                            
                                 span2.id = option.id;
+                                div1.id = "div"+option.id;
+                                
                                 div1.addEventListener('click', function(){
                                     if(!voted){
                                         data[1] = data[1]+1;
                                         option.votes = option.votes + 1;
-                                        document.getElementById(option.id).textContent = option.votes*100/data[1]
+                                        for(const x of data[0][1]){ 
+                                            document.getElementById(x.id).textContent = (x.votes*100/data[1]).toFixed(1)
+                                            document.getElementById("div"+x.id).style.width = x.votes*100/data[1].toString()+"%"
+                                        }
+                                        
                                         document.getElementById("newpoll").className = "poll-option-selected"
                                         const newPoll = {
                                             poll : data
                                         }
                                         axios.post("http://localhost:3001/" , newPoll)
                                         console.log("vote updated")
-                                        voted  =true;
+                                        
                                     }
-                                    
+                                    voted  = true;
                                     
                                 });
                                 div2.append(span1);
@@ -112,9 +119,18 @@ class First extends Component {
                                 poll.append(div1);
                                 poll.append(div2);
                             }
+                            if(voted){
+                                for(const x of data[0][1]){ 
+                                    document.getElementById(x.id).textContent = (x.votes*100/data[1]).toFixed(1)
+                                    document.getElementById("div"+x.id).style.width = x.votes*100/data[1].toString()+"%"
+                                }
+                                
+                                document.getElementById("newpoll").className = "poll-option-selected"
+                            }
                         }
                         else {
                             var child = poll.lastElementChild; 
+                            poll.className=""
                             while (child) {
                                 poll.removeChild(child);
                                 child = poll.lastElementChild;
@@ -161,7 +177,7 @@ class First extends Component {
                 </div>
                 </Popup>
                 <div>
-                <div class="poll__option" id = "newpoll"></div>
+                <div id = "newpoll"></div>
                 </div>
             </div>
         );
