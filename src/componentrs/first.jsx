@@ -147,8 +147,8 @@ class First extends Component {
     render() { 
         return (
             <div>
-                <button onClick={this.currentpoll} class = "button" >Current Poll</button>
-                <Popup  trigger={<button> Create New Poll</button>} position="bottom center">
+                <button onClick={this.currentpoll} className = "button" >Current Poll</button>
+                <Popup  trigger={<button className ="button"> Create New Poll</button>} position="bottom center">
                 <div className='popup'>
                     <form id= "form" action ="#">
                         <input class = "input" id = "question" type= "text"></input>

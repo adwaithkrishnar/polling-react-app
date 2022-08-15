@@ -5,6 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: chocolate;
+  display: inline-flex;
+  
 }
 
 code {
@@ -74,4 +77,17 @@ ul{
   padding: 0.5rem 0;
   font-size: 0.85rem;
 }
+
+.button{
+  border: 2px solid white;
+  background-color: white;
+  color: chocolate;
+  width: 100%;
+  font-size: 20px;
+  border-radius: 5px;
+  height: 50px;
+  margin: 20px;
+
+}
+
 
